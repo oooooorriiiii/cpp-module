@@ -1,0 +1,5 @@
+*.o
+
+# Out files
+CPP00/ex00/megaphone
+CPP00/ex01/phonebook
