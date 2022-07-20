@@ -1,4 +1,4 @@
-#include "Phonebook.hpp"
+#include "phonebook.hpp"
 
 Phonebook::Phonebook(void) {
     full_index = 0;
@@ -42,7 +42,7 @@ std::string Phonebook::fmt_contact(std::string str) {
     if (str.length() <= 10) {
         return str;
     }
-    str = str.substr(0, 8);
+    str = str.substr(0, 9);
     str.append(".");
     return str;
 }
