@@ -3,3 +3,11 @@
 # Out files
 CPP00/ex00/megaphone
 CPP00/ex01/phonebook
+CPP00/ex02/expected
+CPP00/ex02/output
+CPP00/ex02/out
+
+#CPP01
+CPP01/ex00/zombie
+
+.idea
