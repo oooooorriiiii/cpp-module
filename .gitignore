@@ -17,4 +17,7 @@ CPP01/ex05/ex05_out
 CPP01/ex06/harlFilter
 *.replace
 
+#CPP02
+CPP02/ex00/ex00_out
+
 .idea
