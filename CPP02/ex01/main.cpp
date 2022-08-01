@@ -28,6 +28,7 @@ int	main()
 	std::cout << "c is " << c.toFloat() << " as float" << std::endl;
 	std::cout << "d is " << d.toFloat() << " as float" << std::endl;
 
+	// The fixed-point is fixed to 8 bits.
 	// MAX (2e+23 - 1) ~ MIN (-2e+23)
 	Fixed const e(8388607);
 	Fixed const f( -8388608);

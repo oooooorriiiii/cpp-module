@@ -18,17 +18,14 @@ public:
 	~Fixed();
 
 	/**
-	 *
 	 * @return
 	 * the raw value of the fixed-point value
 	 */
 	int		getRawBits() const;
 
 	/**
-	 *
-	 * @param raw
-	 *
 	 * sets the raw value of the fixed-point number
+	 * @param raw
 	 */
 	void	setRawBits(int const raw);
 
