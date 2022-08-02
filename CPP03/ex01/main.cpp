@@ -3,16 +3,17 @@
 //
 
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int	main() {
-	ClapTrap Alice("Alice");
-	ClapTrap Bob("Bob");
-	ClapTrap Carol("Carol");
+	ScavTrap BobBot("BobBot");
 
-	Alice.attack("Bob");
-	Alice.takeDamage(5);
-	Alice.takeDamage(3);
-	Alice.takeDamage(3);
-	Alice.beRepaired(3);
-	Alice.takeDamage(3);
+	BobBot.attack("Alice");
+	BobBot.takeDamage(5);
+	BobBot.beRepaired(5);
+	BobBot.takeDamage(100);
+
+	BobBot.guardGate();
+
+	return 0;
 }

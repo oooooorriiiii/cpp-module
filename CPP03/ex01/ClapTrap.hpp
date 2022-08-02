@@ -12,6 +12,7 @@ public:
 	ClapTrap();
 	~ClapTrap();
 	ClapTrap(const std::string& name);
+	ClapTrap(const ClapTrap &clapTrap); // Copy constructor
 
 	void	attack(const std::string& target);
 	void	takeDamage(unsigned int amount);
@@ -22,7 +23,8 @@ public:
 	unsigned int	getEnergyPoints() const;
 	unsigned int	getAttackDamage() const;
 
-private:
+// private -> protected
+protected:
 	std::string 	_name;
 	unsigned int	_hitPoints;
 	unsigned int	_energyPoints;

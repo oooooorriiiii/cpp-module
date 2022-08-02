@@ -16,6 +16,10 @@ ClapTrap::ClapTrap(const std::string& name) : _name(name), _hitPoints(10), _ener
 	std::cout << "constructo is called" << std::endl;
 }
 
+ClapTrap::ClapTrap(const ClapTrap &clapTrap) : _name(clapTrap._name), _hitPoints(clapTrap._hitPoints), _energyPoints(clapTrap._energyPoints), _attackDamage(clapTrap._attackDamage){
+	std::cout << "copy constructor is called" << std::endl;
+}
+
 void	ClapTrap::attack(const std::string &target) {
 	if (_energyPoints > 0) {
 		std::cout << "ClapTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;

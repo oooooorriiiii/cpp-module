@@ -5,9 +5,19 @@
 #ifndef EX01_SCAVTRAP_HPP
 #define EX01_SCAVTRAP_HPP
 
+#include <iostream>
 
-class ScavTrap {
+#include "ClapTrap.hpp"
 
+class ScavTrap : public ClapTrap{
+public:
+	ScavTrap();
+	~ScavTrap();
+	ScavTrap(std::string name);
+	ScavTrap(const ScavTrap& form); // copy constructor
+
+	void 	attack(const std::string& target);
+	void 	guardGate();
 };
 
 

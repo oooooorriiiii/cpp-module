@@ -1,10 +1,11 @@
 CXX		:=	c++
 CFLAGS	:=	-Wall -Werror -Wextra -std=c++98
 
-NAME	:=	ex00_out
+NAME	:=	ex01_out
 
 SRCS	:=	main.cpp \
-			ClapTrap.cpp
+			ClapTrap.cpp \
+			ScavTrap.cpp
 
 OBJS	:=	$(SRCS:.cpp=.o)
 
