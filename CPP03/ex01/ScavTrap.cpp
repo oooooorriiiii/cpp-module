@@ -27,6 +27,14 @@ ScavTrap::ScavTrap(const ScavTrap &scavTrap) {
 	*this = scavTrap;
 }
 
+ScavTrap& ScavTrap::operator=(const ScavTrap &scavTrap) {
+	_name = scavTrap._name;
+	_hitPoints = scavTrap._hitPoints;
+	_energyPoints = scavTrap._energyPoints;
+	_attackDamage = scavTrap._attackDamage;
+	return *this;
+}
+
 void ScavTrap::attack(const std::string &target) {
 	if (_energyPoints > 0) {
 		std::cout << "ScavTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;

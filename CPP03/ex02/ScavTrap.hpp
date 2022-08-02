@@ -15,6 +15,7 @@ public:
 	~ScavTrap();
 	ScavTrap(std::string name);
 	ScavTrap(const ScavTrap& form); // copy constructor
+	ScavTrap& operator=(const ScavTrap& scavTrap);
 
 	void 	attack(const std::string& target);
 	void 	guardGate();
