@@ -13,7 +13,7 @@ ClapTrap::~ClapTrap() {
 }
 
 ClapTrap::ClapTrap(const std::string& name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0){
-	std::cout << "constructo is called" << std::endl;
+	std::cout << "constructor is called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &clapTrap) : _name(clapTrap._name), _hitPoints(clapTrap._hitPoints), _energyPoints(clapTrap._energyPoints), _attackDamage(clapTrap._attackDamage){

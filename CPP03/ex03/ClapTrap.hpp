@@ -10,7 +10,7 @@
 class ClapTrap {
 public:
 	ClapTrap();
-	~ClapTrap();
+	virtual ~ClapTrap();
 	ClapTrap(const std::string& name);
 	ClapTrap(const ClapTrap &clapTrap); // Copy constructor
 	ClapTrap& operator=(const ClapTrap &clapTrap);

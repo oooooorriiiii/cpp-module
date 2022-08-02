@@ -9,10 +9,10 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap{
+class ScavTrap : virtual public ClapTrap{
 public:
 	ScavTrap();
-	~ScavTrap();
+	virtual ~ScavTrap();
 	ScavTrap(std::string name);
 	ScavTrap(const ScavTrap& form); // copy constructor
 	ScavTrap& operator=(const ScavTrap& scavTrap);

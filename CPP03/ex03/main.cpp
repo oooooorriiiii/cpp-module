@@ -5,16 +5,17 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int	main() {
-	FragTrap Carol("Carol");
+	DiamondTrap Dave("Dave");
 
-	Carol.attack("Alice");
-	Carol.takeDamage(5);
-	Carol.beRepaired(5);
-	Carol.takeDamage(100);
+	Dave.attack("Alice");
+	Dave.takeDamage(5);
+	Dave.beRepaired(5);
+	Dave.takeDamage(100);
 
-	Carol.highFivesGuys();
+	Dave.whoAmI();
 
 	return 0;
 }
