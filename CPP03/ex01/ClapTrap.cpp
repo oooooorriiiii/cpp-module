@@ -20,6 +20,14 @@ ClapTrap::ClapTrap(const ClapTrap &clapTrap) : _name(clapTrap._name), _hitPoints
 	std::cout << "copy constructor is called" << std::endl;
 }
 
+ClapTrap&	ClapTrap::operator=(const ClapTrap &clapTrap) {
+	_name = clapTrap._name;
+	_hitPoints = clapTrap._hitPoints;
+	_energyPoints = clapTrap._energyPoints;
+	_attackDamage = clapTrap._attackDamage;
+	return *this;
+}
+
 void	ClapTrap::attack(const std::string &target) {
 	if (_energyPoints > 0) {
 		std::cout << "ClapTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
