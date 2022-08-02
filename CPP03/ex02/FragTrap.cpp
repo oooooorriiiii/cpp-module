@@ -27,6 +27,14 @@ FragTrap::FragTrap(const FragTrap &fragTrap) {
 	*this = fragTrap;
 }
 
+FragTrap& FragTrap::operator=(const FragTrap &fragTrap) {
+	_name = fragTrap._name;
+	_hitPoints = fragTrap._hitPoints;
+	_energyPoints = fragTrap._energyPoints;
+	_attackDamage = fragTrap._attackDamage;
+	return *this;
+}
+
 void FragTrap::attack(const std::string &target) {
 	if (_energyPoints > 0) {
 		std::cout << "FragTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
