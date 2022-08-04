@@ -3,18 +3,19 @@ CFLAGS	=	-Wall -Wextra -Werror
 
 NAME	=	phonebook
 SRCS	=	main.cpp \
-			phonebook.cpp
-INCLUDES	=	phonebook.hpp
+			Phonebook.cpp \
+			Contact.cpp
+
 OBJS	=	$(SRCS:%.cpp=%.o)
 
 .PHONY: all
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) -o $(NAME) $(OBJS)
+	$(CC) $(OBJS) -o $(NAME)
 
 %.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCLUDES)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 .PHONY: clean
 clean:

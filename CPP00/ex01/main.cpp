@@ -1,4 +1,4 @@
-#include "phonebook.hpp"
+#include "Phonebook.hpp"
 
 int main() {
     std::string cmd;
@@ -9,10 +9,10 @@ int main() {
         std::cin >> cmd;
 
         if (cmd.compare("ADD") == 0){
-            phonebook.Add_contact();
+			phonebook.addContact();
         } else if (cmd.compare("SEARCH") == 0) {
-            phonebook.Show_contact_table();
-            phonebook.Search();
+			phonebook.showContactTable();
+			phonebook.search();
         } else if (cmd.compare("EXIT") == 0) {
             break;
         } else {
