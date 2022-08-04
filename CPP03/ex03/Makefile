@@ -1,5 +1,5 @@
-CXX		:=	c++
-CFLAGS	:=	-Wall -Werror -Wextra -std=c++98 -Wshadow -Wno-shadow
+CXX			:=	clang++
+CXXFLAGS	:=	-Wall -Werror -Wextra -std=c++98 -Wshadow -Wno-shadow
 
 NAME	:=	ex03_out
 
@@ -14,10 +14,10 @@ OBJS	:=	$(SRCS:.cpp=.o)
 .PHONY:	all clean fclean re
 
 .o: .cpp
-	$(CXX) $(CFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(CXX) $(CFLAGS) $^ -o $@
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
 all: $(NAME)
 
