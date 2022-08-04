@@ -1,22 +1,24 @@
-CC			:=	clang++
-CFLAGS		:=	-std=c++98 -Wall -Wextra -Werror
+CXX			:=	clang++
+CXXFLAGS	:=	-std=c++98 -Wall -Wextra -Werror
 
 NAME		:=	out
 
 SRCS		:=	Account.cpp \
 				tests.cpp
 
-INCLUDES	:=	Account.hpp
+OBJS		:=	$(SRCS:.cpp=.o)
 
-OBJS		:=	$(SRCS:%.cpp=%.o)
+.o: .cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 .PHONY:	all
-all		:	$(NAME)
+all:	$(NAME)
 
-$(NAME)	:	$(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+$(NAME):	$(OBJS)
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
 .PHONY: clean
+clean:
 	rm -rf $(OBJS)
 
 .PHONY: fclean
