@@ -1,5 +1,5 @@
-CC		=	clang++ -std=c++98
-CFLAGS	=	-Wall -Wextra -Werror
+CXX			=	clang++
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 
 NAME	=	phonebook
 SRCS	=	main.cpp \
@@ -8,14 +8,14 @@ SRCS	=	main.cpp \
 
 OBJS	=	$(SRCS:%.cpp=%.o)
 
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
 .PHONY: all
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
-
-%.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
 .PHONY: clean
 clean:
