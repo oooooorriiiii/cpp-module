@@ -8,16 +8,24 @@ const std::string ScalarConversion::_kDefaultMessage = "nop";
 
 ScalarConversion::ScalarConversion() {}
 
-ScalarConversion::ScalarConversion(const std::string &arg) : _argumentString(arg),
-								_char(0), _int(0), _float(0), _double(0),
-													_message_char(_kDefaultMessage),
-													 _message_int(_kDefaultMessage),
-													 _message_float(_kDefaultMessage),
-													 _message_double(_kDefaultMessage) {
+ScalarConversion::ScalarConversion(const std::string &arg) : _argumentString(
+		arg),
+															 _char(0),
+															 _int(0),
+															 _float(0),
+															 _double(0),
+															 _message_char(
+																	 _kDefaultMessage),
+															 _message_int(
+																	 _kDefaultMessage),
+															 _message_float(
+																	 _kDefaultMessage),
+															 _message_double(
+																	 _kDefaultMessage) {
 	_convertChar();
-	(void)_double;
-	(void)_int;
-	(void)_float;
+	(void) _double;
+	(void) _int;
+	(void) _float;
 }
 
 ScalarConversion::ScalarConversion(const ScalarConversion &sc) {
@@ -46,8 +54,20 @@ void	ScalarConversion::printAll() const {
  * Private function
  */
 
+/**
+ * ex)
+ * input: nan
+ * _message_char = "impossible"
+ * Because _ftStoI() throws std::invalid_argument and this function catches it.
+ *
+ * input :INT_MAX
+ * _message_char = "Non displayable"
+ *
+ * input: INT_MAX + 1
+ * _message_char = "impossible"
+ * Because _ftStoI() throws std::out_of_range and this function catches it.
+ */
 void	ScalarConversion::_convertChar() {
-
 	try
 	{
 		if (_argumentString.length() == 1 && !std::isdigit(_argumentString[0]))
