@@ -1,10 +1,10 @@
 CXX			:=	clang++
 CXXFLAGS	:=	-Wall -Werror -Wextra -std=c++98
 
-NAME	:=	ex00_out
+NAME	:=	convert
 
 SRCS	:=	main.cpp \
-			Bureaucrat.cpp
+			ScalarConversion.cpp
 
 OBJS	:=	$(SRCS:.cpp=.o)
 
