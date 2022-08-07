@@ -5,9 +5,9 @@ _reset="\e[0m"
 
 EXECUTE_FILE=./convert
 
-while read line
+while read -r line
 do
-  TEST_STRING=$line
+  TEST_STRING=`echo $line | tr -d '\n' | tr -d '\r'`
   echo -e "\n************************************************"
   echo -e " input:" $_green $TEST_STRING $_reset
   $EXECUTE_FILE $TEST_STRING

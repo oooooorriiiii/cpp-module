@@ -23,8 +23,8 @@ ScalarConversion::ScalarConversion(const std::string &arg) : _argumentString(
 															 _message_double(
 																	 _kDefaultMessage) {
 	_convertChar();
+	_convertInt();
 	(void) _double;
-	(void) _int;
 	(void) _float;
 }
 
@@ -48,7 +48,9 @@ ScalarConversion::~ScalarConversion() {}
 
 void	ScalarConversion::printAll() const {
 	_printChar();
+	_printInt();
 }
+
 
 /*
  * Private function
@@ -70,6 +72,7 @@ void	ScalarConversion::printAll() const {
 void	ScalarConversion::_convertChar() {
 	try
 	{
+		std::cout << _argumentString << "  length: " << _argumentString.length() << std::endl; // TODO: delete
 		if (_argumentString.length() == 1 && !std::isdigit(_argumentString[0]))
 		{
 			_char = static_cast<char>(_argumentString[0]);
@@ -88,12 +91,38 @@ void	ScalarConversion::_convertChar() {
 	}
 }
 
+void	ScalarConversion::_convertInt() {
+	try
+	{
+		if (_argumentString.length() == 1 && !std::isdigit(_argumentString[0]) && std::isprint(_argumentString[0]))
+		{
+			_int = static_cast<int>(_argumentString[0]);
+		}
+		else
+		{
+			_int = static_cast<int>(_ftStoI(_argumentString));
+		}
+	}
+	catch (...)
+	{
+		_message_int = "impossible";
+	}
+}
+
 void	ScalarConversion::_printChar() const {
 	std::cout << "char: ";
 	if (_message_char == _kDefaultMessage)
 		std::cout << "\'" << _char  << "\'" << std::endl;
 	else
 		std::cout << _message_char << std::endl;
+}
+
+void	ScalarConversion::_printInt() const {
+	std::cout << "int: ";
+	if (_message_int == _kDefaultMessage)
+		std::cout << _int << std::endl;
+	else
+		std::cout << _message_int << std::endl;
 }
 
 int ScalarConversion::_ftStoI(const std::string &str, std::size_t *idx,

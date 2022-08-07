@@ -40,11 +40,12 @@ private:
 	static const std::string _kDefaultMessage;
 
 	void	_convertChar();
-//	void	_convertInt();
+	void	_convertInt();
 //	void	_convertFloat();
 //	void	_convertDouble();
 
 	void	_printChar() const;
+	void	_printInt() const;
 
 	static int 	_ftStoI(const std::string &str, std::size_t *idx = NULL, int base = 10);
 };
