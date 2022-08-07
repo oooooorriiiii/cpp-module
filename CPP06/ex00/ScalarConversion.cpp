@@ -161,6 +161,9 @@ void	ScalarConversion::_printInt() const {
  * input: 2147483648 (INT_MAX + 1)
  * 2.14748e+09f
  *
+ * input: (Number beyond the range of float type)
+ * impossible
+ *
  */
 void	ScalarConversion::_printFloat() const {
 	std::cout << "float: ";
@@ -191,6 +194,9 @@ void	ScalarConversion::_printFloat() const {
  *
  * input: 2147483648 (INT_MAX + 1)
  * 2.14748e+09
+ *
+ * input: (Number beyond the range of double type)
+ * impossible
  *
  */
 void	ScalarConversion::_printDouble() const {
