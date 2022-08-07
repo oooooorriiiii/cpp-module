@@ -9,6 +9,7 @@
 #include <cerrno>
 #include <cstdlib>
 #include <climits>
+#include <cfloat>
 
 class ScalarConversion {
 public:
@@ -49,9 +50,14 @@ private:
 	void	_printFloat() const;
 	void	_printDouble() const;
 
+
+	/* C++11 functions */
+
 	static int 	_ftStoI(const std::string &str, std::size_t *idx = NULL, int base = 10);
 	static float _ftStoF(const std::string &str, std::size_t *idx = NULL);
 	static double _ftStoD(const std::string &str, std::size_t *idx = NULL);
+	static float _ftStrToF(const char *nptr, char **endptr);
+	static int _ftIsInf(double x);
 };
 
 

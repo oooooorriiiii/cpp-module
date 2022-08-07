@@ -227,11 +227,15 @@ int ScalarConversion::_ftStoI(const std::string &str, std::size_t *idx,
 	return static_cast<int>(x);
 }
 
+
+// Debug for using _ftStoF
+// double x = strtof(p, &end); // std::strtof is not C++98 !!
+
 float ScalarConversion::_ftStoF(const std::string &str, std::size_t *idx) {
 	const char *p = str.c_str();
 	char *end;
 	errno = 0;
-	double x = std::strtof(p, &end); // C++98
+	double x = _ftStrToF(p, &end); // std::strtof is not C++98 !!
 	if (p == end) {
 		throw std::invalid_argument("ftStoF");
 	}
@@ -259,4 +263,38 @@ double ScalarConversion::_ftStoD(const std::string &str, std::size_t *idx) {
 		*idx = static_cast<std::size_t>(end - p);
 	}
 	return x;
+}
+
+float ScalarConversion::_ftStrToF(const char *nptr, char **endptr) {
+	int caller_errno = errno;
+	double dresult;
+	float fresult;
+
+	errno = 0;
+	dresult = std::strtod(nptr, endptr);
+	fresult = static_cast<float>(dresult);
+
+	if (errno == 0) {
+		if (dresult != 0 && fresult == 0)
+			caller_errno = ERANGE;
+		if (!_ftIsInf(dresult) && _ftIsInf(fresult))
+			caller_errno = ERANGE;
+	}
+	else
+		caller_errno = errno;
+
+	errno = caller_errno;
+	return fresult;
+}
+
+/**
+ * reference: IEEE754-1985
+ * @param x
+ * @return
+ */
+int ScalarConversion::_ftIsInf(double x) {
+	union { unsigned long u; double f; } elem = {}; // u_int64_t is C++11 !!
+	elem.f = x;
+	return	( (unsigned)(elem.u >> 32) & 0x7fffffff) == 0x7ff00000 &&
+			  ( (unsigned)elem.u == 0 );
 }
