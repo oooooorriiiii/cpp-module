@@ -25,7 +25,7 @@ ScalarConversion::ScalarConversion(const std::string &arg) : _argumentString(
 	_convertChar();
 	_convertInt();
 	_convertFloat();
-	(void) _double;
+	_convertDouble();
 }
 
 ScalarConversion::ScalarConversion(const ScalarConversion &sc) {
@@ -47,9 +47,11 @@ ScalarConversion::~ScalarConversion() {}
  */
 
 void	ScalarConversion::printAll() const {
+//	std::cout << _argumentString << "  length: " << _argumentString.length() << std::endl;
 	_printChar();
 	_printInt();
 	_printFloat();
+	_printDouble();
 }
 
 
@@ -73,7 +75,6 @@ void	ScalarConversion::printAll() const {
 void	ScalarConversion::_convertChar() {
 	try
 	{
-		std::cout << _argumentString << "  length: " << _argumentString.length() << std::endl; // TODO: delete
 		if (_argumentString.length() == 1 && !std::isdigit(_argumentString[0]))
 			_char = static_cast<char>(_argumentString[0]);
 		else if (_ftStoI(_argumentString) >= 0 && _ftStoI(_argumentString) <= 127)
@@ -108,11 +109,25 @@ void	ScalarConversion::_convertFloat() {
 		if (_argumentString.length() == 1 && !std::isdigit(_argumentString[0]) && std::isprint(_argumentString[0]))
 			_float = static_cast<float>(_argumentString[0]);
 		else
-			_float = static_cast<float>(_ftStoI(_argumentString));
+			_float = static_cast<float>(_ftStoF(_argumentString));
 	}
 	catch (...)
 	{
 		_message_float = "impossible";
+	}
+}
+
+void	ScalarConversion::_convertDouble() {
+	try
+	{
+		if (_argumentString.length() == 1 && !std::isdigit(_argumentString[0]) && std::isprint(_argumentString[0]))
+			_double = static_cast<double>(_argumentString[0]);
+		else
+			_double = static_cast<double>(_ftStoD(_argumentString));
+	}
+	catch (...)
+	{
+		_message_double = "impossible";
 	}
 }
 
@@ -132,19 +147,65 @@ void	ScalarConversion::_printInt() const {
 		std::cout << _message_int << std::endl;
 }
 
-// TODO: handle inff, nanf
+/**
+ * ex)
+ * input: 999999
+ * 999999.0f
+ *
+ * input: 1000000
+ * 1e+06f
+ *
+ * input: 2147483647 (INT_MAX)
+ * 2.14748e+09f
+ *
+ * input: 2147483648 (INT_MAX + 1)
+ * 2.14748e+09f
+ *
+ */
 void	ScalarConversion::_printFloat() const {
 	std::cout << "float: ";
 	if (_message_float == _kDefaultMessage)
 	{
 		std::cout << _float;
-		if (static_cast<int>(_float) - _float == 0.f) // If decimals did not exist, add ".0"
+		// If decimals did not exist and less than 10 to the sixth power, add ".0"
+		if (static_cast<int>(_float) - _float == 0.f && _float < 1000000.f)
 			std::cout << ".0";
 		std::cout << "f" << std::endl;
 	}
 	else
 	{
 		std::cout << _message_float << std::endl;
+	}
+}
+
+/**
+ * ex)
+ * input: 999999
+ * 999999.0
+ *
+ * input: 1000000
+ * 1e+06
+ *
+ * input: 2147483647 (INT_MAX)
+ * 2.14748e+09
+ *
+ * input: 2147483648 (INT_MAX + 1)
+ * 2.14748e+09
+ *
+ */
+void	ScalarConversion::_printDouble() const {
+	std::cout << "double: ";
+	if (_message_double == _kDefaultMessage)
+	{
+		std::cout << _double;
+		// If decimals did not exist and less than 10 to the sixth power, add ".0"
+		if (static_cast<int>(_double) - _double == 0. && _double < 1000000.)
+			std::cout << ".0";
+		std::cout << std::endl;
+	}
+	else
+	{
+		std::cout << _message_double << std::endl;
 	}
 }
 

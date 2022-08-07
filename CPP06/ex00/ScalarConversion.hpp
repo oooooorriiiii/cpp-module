@@ -42,11 +42,12 @@ private:
 	void	_convertChar();
 	void	_convertInt();
 	void	_convertFloat();
-//	void	_convertDouble();
+	void	_convertDouble();
 
 	void	_printChar() const;
 	void	_printInt() const;
 	void	_printFloat() const;
+	void	_printDouble() const;
 
 	static int 	_ftStoI(const std::string &str, std::size_t *idx = NULL, int base = 10);
 	static float _ftStoF(const std::string &str, std::size_t *idx = NULL);
