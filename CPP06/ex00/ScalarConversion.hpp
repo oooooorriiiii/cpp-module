@@ -49,6 +49,8 @@ private:
 	void	_printFloat() const;
 
 	static int 	_ftStoI(const std::string &str, std::size_t *idx = NULL, int base = 10);
+	static float _ftStoF(const std::string &str, std::size_t *idx = NULL);
+	static double _ftStoD(const std::string &str, std::size_t *idx = NULL);
 };
 
 

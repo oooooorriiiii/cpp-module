@@ -160,8 +160,42 @@ int ScalarConversion::_ftStoI(const std::string &str, std::size_t *idx,
 	if (errno == ERANGE || x < INT_MIN || INT_MAX < x) {
 		throw std::out_of_range("ftStoI");
 	}
-	if (idx != NULL) {
+	if (idx != NULL) { // nullptr is C++11 !!
 		*idx = static_cast<std::size_t>(end - p);
 	}
 	return static_cast<int>(x);
+}
+
+float ScalarConversion::_ftStoF(const std::string &str, std::size_t *idx) {
+	const char *p = str.c_str();
+	char *end;
+	errno = 0;
+	double x = std::strtof(p, &end); // C++98
+	if (p == end) {
+		throw std::invalid_argument("ftStoF");
+	}
+	if (errno == ERANGE) {
+		throw std::out_of_range("ftStoF");
+	}
+	if (idx != NULL) {
+		*idx = static_cast<std::size_t>(end - p);
+	}
+	return static_cast<float>(x);
+}
+
+double ScalarConversion::_ftStoD(const std::string &str, std::size_t *idx) {
+	const char *p = str.c_str();
+	char *end;
+	errno = 0;
+	double x = std::strtod(p, &end); // C++98
+	if (p == end) {
+		throw std::invalid_argument("ftStoD");
+	}
+	if (errno == ERANGE) {
+		throw std::out_of_range("ftStoD");
+	}
+	if (idx != NULL) {
+		*idx = static_cast<std::size_t>(end - p);
+	}
+	return x;
 }
