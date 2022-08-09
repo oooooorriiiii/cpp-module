@@ -61,27 +61,46 @@ void	ScalarConversion::printAll() const {
 
 /**
  * ex)
- * input: nan
+ * input: 128 ~ 255
+ * _message_char = "Not exist in ASCII code"
+ *
+ * input: 256 ~
  * _message_char = "impossible"
- * Because _ftStoI() throws std::invalid_argument and this function catches it.
  *
  * input :INT_MAX
- * _message_char = "Non displayable"
+ * _message_char = "impossible"
  *
  * input: INT_MAX + 1
  * _message_char = "impossible"
  * Because _ftStoI() throws std::out_of_range and this function catches it.
+ *
+ * input: nan
+ * _message_char = "impossible"
+ * Because _ftStoI() throws std::invalid_argument and this function catches it.
+ *
  */
 void	ScalarConversion::_convertChar() {
 	try
 	{
 		if (_argumentString.length() == 1 && !std::isdigit(_argumentString[0]))
 			_char = static_cast<char>(_argumentString[0]);
-		else if (_ftStoI(_argumentString) >= 0 && _ftStoI(_argumentString) <= 127)
-			_char = static_cast<char>(_ftStoI(_argumentString));
+		else if (_ftStoD(_argumentString) < INT_MIN  || INT_MAX < _ftStoD(_argumentString))
+			_message_char = "impossible";
+		else if (_ftStoI(_argumentString) >= 0 && _ftStoI(_argumentString) <= 255)
+		{
+			if (_ftStoI(_argumentString) >= 0 && _ftStoI(_argumentString) <= 127)
+			{
+				_char = static_cast<char>(_ftStoI(_argumentString));
+				if (!std::isprint(_char))
+					_message_char = "Non displayable";
+			} else {
+				_char = static_cast<char>(_ftStoI(_argumentString));
+				_message_char = "Not exist in ASCII code";
+			}
+		}
+		else
+			_message_char = "impossible";
 
-		if (!std::isprint(_char))
-			_message_char = "Non displayable";
 	}
 	catch (...)
 	{
@@ -94,6 +113,8 @@ void	ScalarConversion::_convertInt() {
 	{
 		if (_argumentString.length() == 1 && !std::isdigit(_argumentString[0]) && std::isprint(_argumentString[0]))
 			_int = static_cast<int>(_argumentString[0]);
+		else if (_ftStoD(_argumentString) < INT_MIN  || INT_MAX < _ftStoD(_argumentString))
+			_message_int = "impossible";
 		else
 			_int = static_cast<int>(_ftStoI(_argumentString));
 	}
@@ -132,6 +153,7 @@ void	ScalarConversion::_convertDouble() {
 }
 
 void	ScalarConversion::_printChar() const {
+//	std::cout << "messege: " << _message_char << std::endl; // D
 	std::cout << "char: ";
 	if (_message_char == _kDefaultMessage)
 		std::cout << "\'" << _char  << "\'" << std::endl;
