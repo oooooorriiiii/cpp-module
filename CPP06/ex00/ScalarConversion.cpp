@@ -115,8 +115,14 @@ void	ScalarConversion::_convertInt() {
 			_int = static_cast<int>(_argumentString[0]);
 		else if (_ftStoD(_argumentString) < INT_MIN  || INT_MAX < _ftStoD(_argumentString))
 			_message_int = "impossible";
-		else
-			_int = static_cast<int>(_ftStoI(_argumentString));
+		else {
+			if (INT_MIN < _ftStoD(_argumentString) && _ftStoD(_argumentString) < INT_MAX)
+				// Cast stod because stoi does not support exponential notation.
+				_int = static_cast<int>(_ftStoD(_argumentString));
+			else
+				// because handle 'nan'
+				_int = static_cast<int>(_ftStoI(_argumentString));
+		}
 	}
 	catch (...)
 	{
