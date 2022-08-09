@@ -61,6 +61,18 @@ void	ScalarConversion::printAll() const {
 
 /**
  * ex)
+ * input: 0
+ * _message_char = "Not displayable"
+ *
+ * input: 42
+ * _char = '*'
+ *
+ * input: a
+ * _char = 'a'
+ *
+ * input: 1.26e+02
+ * _char = '~'
+ *
  * input: 128 ~ 255
  * _message_char = "Not exist in ASCII code"
  *
@@ -84,23 +96,19 @@ void	ScalarConversion::_convertChar() {
 	{
 		if (_argumentString.length() == 1 && !std::isdigit(_argumentString[0]))
 			_char = static_cast<char>(_argumentString[0]);
-		else if (_ftStoD(_argumentString) < INT_MIN  || INT_MAX < _ftStoD(_argumentString))
-			_message_char = "impossible";
-		else if (_ftStoI(_argumentString) >= 0 && _ftStoI(_argumentString) <= 255)
+		else if (_ftStoD(_argumentString) >= 0 && _ftStoD(_argumentString) <= 255)
 		{
-			if (_ftStoI(_argumentString) >= 0 && _ftStoI(_argumentString) <= 127)
+			_char = static_cast<char>(_ftStoD(_argumentString));
+			if (_char >= 0 &&  _char <= 127)
 			{
-				_char = static_cast<char>(_ftStoI(_argumentString));
 				if (!std::isprint(_char))
 					_message_char = "Non displayable";
 			} else {
-				_char = static_cast<char>(_ftStoI(_argumentString));
 				_message_char = "Not exist in ASCII code";
 			}
 		}
 		else
 			_message_char = "impossible";
-
 	}
 	catch (...)
 	{
@@ -117,10 +125,10 @@ void	ScalarConversion::_convertInt() {
 			_message_int = "impossible";
 		else {
 			if (INT_MIN < _ftStoD(_argumentString) && _ftStoD(_argumentString) < INT_MAX)
-				// Cast stod because stoi does not support exponential notation.
+				// Cast return value of stod() because stoi() does not support exponential notation.
 				_int = static_cast<int>(_ftStoD(_argumentString));
 			else
-				// because handle 'nan'
+				// use stoi because handle 'nan'
 				_int = static_cast<int>(_ftStoI(_argumentString));
 		}
 	}
