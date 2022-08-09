@@ -1,7 +1,7 @@
 CXX			:=	clang++
 CXXFLAGS	:=	-Wall -Werror -Wextra -std=c++98
 
-NAME	:=	ex00_out
+NAME	:=	ex02_out
 
 SRCS	:=	main.cpp
 
