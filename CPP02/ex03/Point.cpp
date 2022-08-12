@@ -6,7 +6,7 @@
 
 Point::Point() : _x(Fixed(0)), _y(Fixed(0)) {}
 
-Point::Point(const Point x, const float y) : _x(Fixed(x)), _y(Fixed(y)) {}
+Point::Point(const float x, const float y) : _x(Fixed(x)), _y(Fixed(y)) {}
 
 Point::Point(const Fixed& x, const Fixed& y) : _x(Fixed(x)), _y(Fixed(y)) {}
 
@@ -25,11 +25,11 @@ Point::~Point() {}
  * getters
  */
 
-const Point& Point::getX() const {
+Fixed Point::getX() const {
 	return _x;
 }
 
-const Point& Point::getY() const {
+Fixed Point::getY() const {
 	return _y;
 }
 
