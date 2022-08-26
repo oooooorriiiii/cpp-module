@@ -1,7 +1,7 @@
 CXX			:=	clang++
 CXXFLAGS	:=	-std=c++98 -Wall -Wextra -Werror
 
-NAME		:=	out
+NAME		:=	ex02.out
 
 SRCS		:=	Account.cpp \
 				tests.cpp
