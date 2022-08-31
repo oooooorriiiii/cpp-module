@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include "Phonebook.hpp"
 
 int main() {
@@ -6,18 +7,25 @@ int main() {
 
     while (true) {
         std::cout << "Please your command [EXIT, ADD, SEARCH]" << std::endl << ">";
-        std::cin >> cmd;
 
-        if (cmd.compare("ADD") == 0){
+		if (!std::getline(std::cin, cmd, '\n')) {
+			std::cout << std::endl;
+			exit(1);
+		}
+
+        if (cmd == "ADD"){
 			phonebook.addContact();
-        } else if (cmd.compare("SEARCH") == 0) {
+        } else if (cmd == "SEARCH") {
 			phonebook.showContactTable();
 			phonebook.search();
-        } else if (cmd.compare("EXIT") == 0) {
+        } else if (cmd == "EXIT") {
             break;
-        } else {
+        } else if (cmd.empty()) { // enter only. After reading a command.
+			continue;
+		} else {
             std::cout << "Invalid command." << std::endl;
         }
     }
+
     return 0;
 }
