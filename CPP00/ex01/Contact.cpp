@@ -39,7 +39,7 @@ std::string Contact::getPhoneNumber() const {
 
 std::string Contact::getDarkestSecret() const {
 	return _darkestSecret;
-};
+}
 
 
 /*
