@@ -20,7 +20,8 @@ private:
 	Contact					_contacts[8];
     int                     _fullIndex;
     int                     _index;
-    std::string fmtContact(std::string str);
+    std::string				fmtContact(std::string str);
+	void					inputHandler(int index);
 };
 
 #endif

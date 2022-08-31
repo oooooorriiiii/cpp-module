@@ -1,47 +1,55 @@
+#include <cstdlib>
+
 #include "Phonebook.hpp"
 
 Phonebook::Phonebook() : _fullIndex(0), _index(0){}
 
 Phonebook::~Phonebook() {}
 
-void Phonebook::addContact() {
+void Phonebook::inputHandler(int index) {
 	std::string	inputString;
 
+	std::cout << "First Name : ";
+	if (!std::getline(std::cin, inputString)) {
+		std::cout << std::endl;
+		exit(1);
+	}
+	_contacts[index].setFirstName(inputString);
+	std::cout << "Last Name : ";
+	if (!std::getline(std::cin, inputString)) {
+		std::cout << std::endl;
+		exit(1);
+	}
+	_contacts[index].setLaseName(inputString);
+	std::cout << "Nickname : ";
+	if (!std::getline(std::cin, inputString)) {
+		std::cout << std::endl;
+		exit(1);
+	}
+	_contacts[index].setNickName(inputString);
+	std::cout << "Phone Number : ";
+	if (!std::getline(std::cin, inputString)) {
+		std::cout << std::endl;
+		exit(1);
+	}
+	_contacts[index].setPhoneNumber(inputString);
+	std::cout << "Darkest Secret : ";
+	if (!std::getline(std::cin, inputString)) {
+		std::cout << std::endl;
+		exit(1);
+	}
+	_contacts[index].setDarkestSecret(inputString);
+}
+
+void Phonebook::addContact() {
+
     if (_fullIndex < 8) {
-        std::cout << "First Name : ";
-        std::cin >> inputString;
-		_contacts[_fullIndex].setFirstName(inputString);
-        std::cout << "Last Name : ";
-		std::cin >> inputString;
-		_contacts[_fullIndex].setLaseName(inputString);
-        std::cout << "Nickname : ";
-		std::cin >> inputString;
-		_contacts[_fullIndex].setNickName(inputString);
-        std::cout << "Phone Number : ";
-		std::cin >> inputString;
-		_contacts[_fullIndex].setPhoneNumber(inputString);
-        std::cout << "Darkest Secret : ";
-		std::cin >> inputString;
-		_contacts[_fullIndex].setDarkestSecret(inputString);
+		inputHandler(_fullIndex);
         ++_fullIndex;
     } else {
         if (_index == 8)
 			_index = 0;
-		std::cout << "First Name : ";
-		std::cin >> inputString;
-		_contacts[_index].setFirstName(inputString);
-		std::cout << "Last Name : ";
-		std::cin >> inputString;
-		_contacts[_index].setLaseName(inputString);
-		std::cout << "Nickname : ";
-		std::cin >> inputString;
-		_contacts[_index].setNickName(inputString);
-		std::cout << "Phone Number : ";
-		std::cin >> inputString;
-		_contacts[_index].setPhoneNumber(inputString);
-		std::cout << "Darkest Secret : ";
-		std::cin >> inputString;
-		_contacts[_index].setDarkestSecret(inputString);
+		inputHandler(_index);
 		++_index;
 	}
 }

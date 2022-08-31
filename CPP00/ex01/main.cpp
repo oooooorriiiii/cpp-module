@@ -20,8 +20,6 @@ int main() {
 			phonebook.search();
         } else if (cmd == "EXIT") {
             break;
-        } else if (cmd.empty()) { // enter only. After reading a command.
-			continue;
 		} else {
             std::cout << "Invalid command." << std::endl;
         }
