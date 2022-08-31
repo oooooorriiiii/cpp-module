@@ -10,35 +10,40 @@ void Phonebook::inputHandler(int index) {
 	std::string	inputString;
 
 	std::cout << "First Name : ";
-	if (!std::getline(std::cin, inputString)) {
+	if (std::cin >> inputString) {
+		_contacts[index].setFirstName(inputString);
+	} else {
 		std::cout << std::endl;
 		exit(1);
 	}
-	_contacts[index].setFirstName(inputString);
 	std::cout << "Last Name : ";
-	if (!std::getline(std::cin, inputString)) {
+	if (std::cin >> inputString) {
+		_contacts[index].setLaseName(inputString);
+	} else {
 		std::cout << std::endl;
 		exit(1);
 	}
-	_contacts[index].setLaseName(inputString);
 	std::cout << "Nickname : ";
-	if (!std::getline(std::cin, inputString)) {
+	if (std::cin >> inputString) {
+		_contacts[index].setNickName(inputString);
+	} else {
 		std::cout << std::endl;
 		exit(1);
 	}
-	_contacts[index].setNickName(inputString);
 	std::cout << "Phone Number : ";
-	if (!std::getline(std::cin, inputString)) {
+	if (std::cin >> inputString) {
+		_contacts[index].setPhoneNumber(inputString);
+	} else {
 		std::cout << std::endl;
 		exit(1);
 	}
-	_contacts[index].setPhoneNumber(inputString);
 	std::cout << "Darkest Secret : ";
-	if (!std::getline(std::cin, inputString)) {
+	if (std::cin >> inputString) {
+		_contacts[index].setDarkestSecret(inputString);
+	} else {
 		std::cout << std::endl;
 		exit(1);
 	}
-	_contacts[index].setDarkestSecret(inputString);
 }
 
 void Phonebook::addContact() {
