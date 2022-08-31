@@ -83,6 +83,11 @@ void Phonebook::search(void) {
     std::cout << "search index : ";
     std::cin >> target_index;
     std::cin.ignore();
+	if (std::cin.eof())
+	{
+		std::cout << std::endl;
+		exit(1);
+	}
     if (std::cin.fail()) {
         std::cout << "Invalid index" << std::endl;
         std::cin.clear();
